@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-asphalt: #15171A;
+    --color-taxi-yellow: #F6B800;
+    --color-paper: #F4F1EA;
+    --color-paper-muted: #E8E4DA;
+    --color-ink: #0E0E0E;
+    --color-signal-red: #D7372B;
+    --color-amber-pri: #E58A00;
+    --color-slate-teal: #3E7C7A;
+    --color-success-green: #2E7D4F;
+
+    --font-display: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* High contrast mode overrides */
+.high-contrast {
+  --color-paper: #FFFFFF;
+  --color-paper-muted: #EEEEEE;
+  --color-ink: #000000;
+  --color-taxi-yellow: #FFD200;
+  --color-signal-red: #FF0000;
+  --color-success-green: #008000;
+}
+
+.high-contrast * {
+  border-color: #000000 !important;
+}
+
+/* Flat hard offset shadows */
+.shadow-hard {
+  box-shadow: 4px 4px 0px #0E0E0E;
+}
+
+.shadow-hard-sm {
+  box-shadow: 2px 2px 0px #0E0E0E;
+}
+
+.shadow-hard-lg {
+  box-shadow: 6px 6px 0px #0E0E0E;
+}
+
+.shadow-hard-yellow {
+  box-shadow: 4px 4px 0px #F6B800;
+}
+
+/* Button & Card Active Press effect */
+.btn-press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #0E0E0E;
+}
+
+/* Ticket stub notches */
+.ticket-stub {
+  position: relative;
+  background-color: #FFFFFF;
+  border: 2px solid #0E0E0E;
+  border-radius: 6px;
+}
+
+.ticket-stub::before,
+.ticket-stub::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-paper);
+  border: 2px solid #0E0E0E;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.ticket-stub::before {
+  left: -9px;
+  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+}
+
+.ticket-stub::after {
+  right: -9px;
+  clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
+}
+
+/* Dashed route connector */
+.dashed-route-v {
+  background-image: repeating-linear-gradient(to bottom, #0E0E0E 0, #0E0E0E 6px, transparent 6px, transparent 12px);
+}
+
+.dashed-route-h {
+  background-image: repeating-linear-gradient(to right, #0E0E0E 0, #0E0E0E 6px, transparent 6px, transparent 12px);
+}
+
+/* Custom scrollbar for transit vibe */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4F1EA;
+  border-left: 2px solid #0E0E0E;
+}
+::-webkit-scrollbar-thumb {
+  background: #0E0E0E;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F6B800;
+}
+
+/* Leaflet Transit Map Overrides: Grayscale OSM tiles to match Mumbai transit look */
+.leaflet-container {
+  font-family: var(--font-body) !important;
+  background-color: #E8E4DA !important;
+}
+
+.leaflet-tile-pane {
+  filter: grayscale(100%) contrast(115%) brightness(96%);
+}
+
+.high-contrast .leaflet-tile-pane {
+  filter: grayscale(100%) contrast(140%) brightness(102%);
+}
+
+/* Leaflet Custom Transit Numbered Square Pin */
+.leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.transit-map-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #0E0E0E;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0px #0E0E0E;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: -0.05em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.transit-map-pin:hover {
+  transform: translate(-1px, -2px) scale(1.1);
+  box-shadow: 4px 4px 0px #0E0E0E;
+  z-index: 999 !important;
+}
+
+.transit-map-pin.active-pin {
+  outline: 3px solid #0E0E0E;
+  outline-offset: 2px;
+  transform: scale(1.15);
+}
+
+/* Custom Leaflet Popup with Transit Signage Aesthetic */
+.leaflet-popup-content-wrapper {
+  background: #FFFFFF !important;
+  color: #0E0E0E !important;
+  border: 2px solid #0E0E0E !important;
+  border-radius: 6px !important;
+  box-shadow: 4px 4px 0px #0E0E0E !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.leaflet-popup-tip-container {
+  display: none !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.3 !important;
+}
+
+/* Bike Mount Text Size Accessibility Adjustments */
+html.text-size-large {
+  font-size: 112.5%;
+}
+
+html.text-size-xlarge {
+  font-size: 125%;
+}
+
+/* Subtle page transition container */
+.page-fade-in {
+  animation: transitFadeIn 0.2s ease-out;
+}
+
+@keyframes transitFadeIn {
+  from {
+    opacity: 0.85;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-fade-in {
+    animation: none !important;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Day Replay Courier Moving Marker */
+.replay-courier-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: #F6B800;
+  border: 2.5px solid #0E0E0E;
+  border-radius: 50%;
+  box-shadow: 3px 3px 0px #0E0E0E;
+  transition: transform 0.25s ease-out;
+}
+
+.replay-courier-pin::after {
+  content: '';
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px dashed #0E0E0E;
+  animation: pulseReplayRing 1.8s infinite linear;
+}
+
+@keyframes pulseReplayRing {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+}
+
+

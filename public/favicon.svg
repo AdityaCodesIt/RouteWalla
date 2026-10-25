@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="8" fill="#15171A"/>
+  <rect x="4" y="4" width="56" height="56" rx="6" fill="#F6B800" stroke="#0E0E0E" stroke-width="3"/>
+  <text x="32" y="42" font-family="'IBM Plex Mono', monospace" font-weight="900" font-size="26" text-anchor="middle" fill="#0E0E0E">RW</text>
+  <circle cx="12" cy="12" r="3" fill="#0E0E0E"/>
+  <circle cx="52" cy="12" r="3" fill="#0E0E0E"/>
+</svg>

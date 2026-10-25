@@ -1,0 +1,6 @@
+{
+  "name": "RouteWala",
+  "description": "Multi-stop route planner for delivery workers in Mumbai featuring transit signage design, offline-first stops, one-handed navigation, and on-the-way wishlist.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
